@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Открытка ко Дню матери</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>/* Общие стили */
+        body {
+            font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f2f2f7;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        /* Полупрозрачный фон с эффектом размытия */
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(242, 242, 247, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+        
+        .envelope {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            height: calc(70vh);
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(60, 60, 67, 0.18);
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(60, 60, 67, 0.18);
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .envelope.open .flap {
+            transform: perspective(800px) rotateX(-180deg);
+        }
+        
+        .heart {
+            font-size: 60px;
+        }
+        
+        .message {
+            position: absolute;
+            top: 50%;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out 0.2s;
+            overflow-y: auto;
+        }
+        
+        .envelope.open .message {
+            opacity: 1;
+        }
+        
+        .message h2 {
+            font-size: 24px;
+            margin-top: 0;
+            color: #000000;
+        }
+        
+        .message p {
+            font-size: 18px;
+            color: #1c1c1e;
+        }
+        
+        .mom-photo {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Стили для кнопки */
+        #open-btn {
+            margin-top: 20px;
+            padding: 14px 28px;
+            font-size: 17px;
+            background-color: #007aff;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        #open-btn:active {
+            background-color: #0051a8;
+        }
+        
+        /* Эффект нажатия кнопки */
+        #open-btn:active {
+            transform: scale(0.96);
+        }
+        
+        /* Адаптация под iPhone 13 Pro */
+        @media only screen and (max-width: 390px) {
+            .envelope {
+                max-width: 100%;
+            }
+        
+            .heart {
+                font-size: 15vw;
+            }
+        
+            .message h2 {
+                font-size: 6vw;
+            }
+        
+            .message p {
+                font-size: 5vw;
+            }
+        
+            #open-btn {
+                font-size: 5vw;
+                padding: 12px 24px;
+            }
+        }
+        </style>
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <div class="flap" id="flap">
+            <div class="heart">❤️</div>
+        </div>
+        <div class="message">
+            <h2>Дорогая мама,</h2>
+            <p>С Днем Матери! Спасибо за всю твою любовь и заботу.</p>
+            <img src="1.jpg" alt="Фото мамы" class="mom-photo">
+        </div>
+    </div>
+
+    <button id="open-btn">Открыть открытку</button>
+
+    <script>
+        document.getElementById('open-btn').addEventListener('click', function() {
+            document.getElementById('envelope').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
